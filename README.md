@@ -20,7 +20,7 @@ A clean, modern unit converter built with **ASP.NET Core Razor Pages** and **Boo
 
 ## Demo
 
-![Unit Converter Demo](wwwroot/demo.png)
+![Unit Converter Demo](UnitConverter/wwwroot/demo.png)
 
 ---
 
