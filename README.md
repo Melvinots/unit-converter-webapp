@@ -70,7 +70,7 @@ UnitConverter/
 
 ```bash
 # Clone the repository
-git clone https://github.com/Melvinots/UnitConverter.git
+git clone https://github.com/Melvinots//unit-converter-webapp.git
 
 # Navigate to project folder
 cd UnitConverter
