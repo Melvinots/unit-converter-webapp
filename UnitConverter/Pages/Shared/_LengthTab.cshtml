@@ -1,0 +1,62 @@
+﻿@model IndexModel
+
+<form method="post">
+    <input type="hidden" asp-for="ConversionInput.ConversionType" value="length" />
+
+    <div class="mb-4">
+        <label asp-for="ConversionInput.Value" class="form-label fw-semibold text-uppercase small text-muted">
+            Value
+        </label>
+        <input type="number"
+               asp-for="ConversionInput.Value"
+               step="any"
+               placeholder="Enter value"
+               class="form-control form-control-lg border-2 rounded-3" />
+        <span asp-validation-for="ConversionInput.Value" class="text-danger small"></span>
+    </div>
+
+    <div class="row g-3 mb-4 align-items-center">
+
+        <div class="col-md-5">
+            <label asp-for="ConversionInput.FromUnit" class="form-label fw-semibold text-uppercase small text-muted">
+                From
+            </label>
+            <select asp-for="ConversionInput.FromUnit" class="form-select">
+                <option value="km">Kilometers (km)</option>
+                <option value="m">Meters (m)</option>
+                <option value="cm">Centimeters (cm)</option>
+                <option value="mm">Millimeters (mm)</option>
+                <option value="mi">Miles (mi)</option>
+                <option value="ft">Feet (ft)</option>
+                <option value="in">Inches (in)</option>
+            </select>
+        </div>
+
+        <div class="col-md-2 text-center mt-4 pt-2">
+            <span class="fs-3 fw-bold text-muted">→</span>
+        </div>
+
+        <div class="col-md-5">
+            <label asp-for="ConversionInput.ToUnit" class="form-label fw-semibold text-uppercase small text-muted">
+                To
+            </label>
+            <select asp-for="ConversionInput.ToUnit" class="form-select">
+                <option value="km">Kilometers (km)</option>
+                <option value="m">Meters (m)</option>
+                <option value="cm">Centimeters (cm)</option>
+                <option value="mm">Millimeters (mm)</option>
+                <option value="mi">Miles (mi)</option>
+                <option value="ft">Feet (ft)</option>
+                <option value="in">Inches (in)</option>
+            </select>
+        </div>
+
+    </div>
+
+    <div class="d-grid">
+        <button type="submit" class="btn-convert">
+            Convert →
+        </button>
+    </div>
+
+</form>

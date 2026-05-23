@@ -1,7 +1,10 @@
+using UnitConverter.Services;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
+builder.Services.AddScoped<IConverterService, ConverterService>();
 
 var app = builder.Build();
 

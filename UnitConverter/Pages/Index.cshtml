@@ -1,10 +1,66 @@
 ﻿@page
 @model IndexModel
 @{
-    ViewData["Title"] = "Home page";
+    ViewData["Title"] = Model.ActiveTab.ToSentenceCase();
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+@section Tabs {
+    <a class="sidebar-tab @(Model.ActiveTab == "length" ? "active" : "")"
+           href="?tab=length">
+        <span class="tab-icon">📏</span> Length
+    </a>
+    <a class="sidebar-tab @(Model.ActiveTab == "weight" ? "active" : "")"
+           href="?tab=weight">
+        <span class="tab-icon">⚖️</span> Weight
+    </a>
+    <a class="sidebar-tab @(Model.ActiveTab == "temperature" ? "active" : "")"
+           href="?tab=temperature">
+        <span class="tab-icon">🌡️</span> Temperature
+    </a>
+}
+
+<!-- Tab Content -->
+@if (Model.ActiveTab == "length")
+{
+    <partial name="_LengthTab" model="Model" />
+}
+else if (Model.ActiveTab == "weight")
+{
+    <partial name="_WeightTab" model="Model" />
+}
+else if (Model.ActiveTab == "temperature")
+{
+    <partial name="_TemperatureTab" model="Model" />
+}
+
+<!-- Result -->
+@if (Model.Result.HasValue)
+{
+    <div id="result" class="result-box">
+        <div class="result-label">✅ Result</div>
+        <div>
+            <span class="result-value">@Model.Result.Value.ToString("G6")</span>
+            <span class="result-unit">@Model.ConversionInput.ToUnit</span>
+        </div>
+    </div>
+}
+
+<!-- Error -->
+@if (!string.IsNullOrEmpty(Model.ErrorMessage))
+{
+    <div id="result" class="error-box">
+        <div class="error-label">❌ Error</div>
+        <div class="error-message">@Model.ErrorMessage</div>
+    </div>
+}
+
+<div asp-validation-summary="ModelOnly" class="text-danger mt-3"></div>
+
+@section Scripts {
+    <script>
+        var result = document.getElementById('result');
+        if (result) {
+            result.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+    </script>
+}
